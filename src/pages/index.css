@@ -1,0 +1,86 @@
+/* Custom Styles */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+.highlight-leader {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  border-top: 4px solid #3a7bd5 !important;
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.slick-slide {
+  padding: 10px;
+}
+
+.slick-prev:before, 
+.slick-next:before {
+  color: #3a7bd5 !important;
+}
+
+.slick-dots li button:before {
+  font-size: 10px !important;
+  color: #3a7bd5 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #3a7bd5 !important;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Divisions Section Styles */
+.division-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.division-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+}
