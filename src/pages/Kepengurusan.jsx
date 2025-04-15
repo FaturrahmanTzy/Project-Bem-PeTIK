@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaUserTie, FaUserFriends, FaFileAlt, FaMoneyBillWave, FaBullhorn, FaCalendarAlt, FaCameraRetro, FaUsers, FaGraduationCap, FaUtensils, FaBroom, FaHeartbeat, FaLightbulb, FaHandshake } from 'react-icons/fa';
+import { FaUserTie, FaUsers, FaFileAlt, FaMoneyBillWave, FaBullhorn, FaCalendarAlt, FaChalkboardTeacher, FaBroom, FaHeartbeat, FaLightbulb, FaHandshake, FaUtensils, FaGraduationCap } from 'react-icons/fa';
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import "./kepengurusan.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import anggota1 from "../assets/anggota1.jpg";
+import anggota1 from "../assets/anggota1.jpeg";
 import anggota2 from "../assets/anggota2.jpg";
 import anggota3 from "../assets/anggota3.jpg";
 import anggota4 from "../assets/anggota4.jpg";
@@ -19,73 +19,73 @@ const PengurusBEM = () => {
     const pengurus = [
         {
             id: 1,
-            name: "IchWan Nurfitrah",
+            name: "Sudarman",
             position: "Ketua BEM",
             division: "Pimpinan",
-            bio: "Mahasiswa Teknik Informatika angkatan 2020, berpengalaman dalam organisasi kampus dan pengembangan software",
+            bio: "Memimpin seluruh kegiatan BEM, bertanggung jawab atas visi dan misi organisasi serta koordinasi antar divisi",
             photo: anggota1,
-            social: { email: "ichwan@petik.ac.id", instagram: "@ichwan_petik" },
+            social: { email: "sudarman@petik.ac.id", instagram: "@sudarman_petik" },
             achievements: ["Juara 1 Hackathon Nasional 2023", "Best Leader Award 2022"]
         },
         {
             id: 2,
-            name: "Izan Mar'i",
+            name: "Muhammad Riza Al-Fahri",
             position: "Wakil Ketua",
             division: "Pimpinan",
-            bio: "Mahasiswa Sistem Informasi angkatan 2021, aktif dalam kegiatan kemahasiswaan dan pengabdian masyarakat",
+            bio: "Mendampingi ketua dalam menjalankan tugas dan menggantikan ketua ketika berhalangan",
             photo: anggota2,
-            social: { email: "izan@petik.ac.id", instagram: "@izan_mar" },
+            social: { email: "riza@petik.ac.id", instagram: "@riza_alfahri" },
             achievements: ["Koordinator PeTIK Mengajar 2023", "Duta Kampus 2022"]
         },
         {
             id: 3,
             name: "Risky Agustian",
-            position: "Sekretaris",
-            division: "Sekretariat",
-            bio: "Mahasiswa Teknologi Informasi angkatan 2021, memiliki kemampuan administrasi dan dokumentasi yang baik",
+            position: "Koordinator Logistik",
+            division: "Logistik",
+            bio: "Bertanggung jawab atas pengelolaan logistik dan perlengkapan kegiatan BEM",
             photo: anggota3,
             social: { email: "risky@petik.ac.id", instagram: "@risky_agust" },
-            achievements: ["Penulis Terbaik BEM 2023", "Organizer Tech Week 2022"]
+            achievements: ["Manajer Logistik Terbaik 2023", "Organizer Tech Week 2022"]
         },
         {
             id: 4,
-            name: "Sudarman",
+            name: "Firdaus Al-Ayubi",
             position: "Bendahara",
             division: "Keuangan",
-            bio: "Mahasiswa Akuntansi angkatan 2020, berpengalaman dalam pengelolaan keuangan organisasi dan fundraising",
+            bio: "Mengelola keuangan BEM, membuat laporan keuangan, dan bertanggung jawab atas dana organisasi",
             photo: anggota4,
-            social: { email: "sudarman@petik.ac.id", instagram: "@sudarman_petik" },
+            social: { email: "firdaus@petik.ac.id", instagram: "@firdaus_ayubi" },
             achievements: ["Best Financial Manager 2023", "Fundraising Champion 2022"]
         },
         {
             id: 5,
-            name: "Muhammad Fatih",
-            position: "Koordinator Humas",
-            division: "Humas",
-            bio: "Mahasiswa Komunikasi angkatan 2021, memiliki jaringan luas dan kemampuan komunikasi yang baik",
+            name: "Muhammad Ilmiannur",
+            position: "Koordinator Kesehatan",
+            division: "Kesehatan",
+            bio: "Mengkoordinasikan program kesehatan mahasiswa dan kegiatan olahraga kampus",
             photo: anggota5,
-            social: { email: "fatih@petik.ac.id", instagram: "@fatih_humas" },
-            achievements: ["Best Public Speaker 2023", "Media Partner Award 2022"]
+            social: { email: "ilmiannur@petik.ac.id", instagram: "@ilmiannur_health" },
+            achievements: ["Penghargaan Kampus Sehat 2023", "Organizer PeTIK Marathon 2022"]
         },
         {
             id: 6,
-            name: "Eka Putri",
-            position: "Koordinator Acara",
-            division: "Acara",
-            bio: "Mahasiswa Manajemen angkatan 2021, berpengalaman mengorganisir berbagai event kampus berskala besar",
+            name: "Kholis Ibrohim",
+            position: "Koordinator Pendidikan",
+            division: "Pendidikan",
+            bio: "Mengembangkan program akademik dan non-akademik untuk peningkatan kualitas belajar mahasiswa",
             photo: anggota6,
-            social: { email: "eka@petik.ac.id", instagram: "@eka_putri" },
-            achievements: ["Best Event Organizer 2023", "Creative Award 2022"]
+            social: { email: "kholis@petik.ac.id", instagram: "@kholis_edu" },
+            achievements: ["Best Education Program 2023", "Creative Learning Award 2022"]
         },
         {
             id: 7,
-            name: "Fikri Hidayat",
-            position: "Koordinator Media",
-            division: "Media",
-            bio: "Mahasiswa Desain Komunikasi Visual angkatan 2022, ahli dalam desain grafis dan konten digital",
+            name: "Ikhsan Prasetyo",
+            position: "Koordinator Kebersihan",
+            division: "Kebersihan",
+            bio: "Mengawasi kebersihan lingkungan kampus dan mengorganisir kegiatan bersih-bersih",
             photo: anggota7,
-            social: { email: "fikri@petik.ac.id", instagram: "@fikri_media" },
-            achievements: ["Best Design Award 2023", "Social Media Growth 200%"]
+            social: { email: "ikhsan@petik.ac.id", instagram: "@ikhsan_clean" },
+            achievements: ["Green Campus Award 2023", "Eco Warrior 2022"]
         }
     ];
 
@@ -104,7 +104,10 @@ const PengurusBEM = () => {
             case 'Keuangan': return <FaMoneyBillWave className="text-success" />;
             case 'Humas': return <FaBullhorn className="text-danger" />;
             case 'Acara': return <FaCalendarAlt className="text-info" />;
-            case 'Media': return <FaCameraRetro className="text-dark" />;
+            case 'Pendidikan': return <FaChalkboardTeacher className="text-warning" />;
+            case 'Kebersihan': return <FaBroom className="text-success" />;
+            case 'Kesehatan': return <FaHeartbeat className="text-danger" />;
+            case 'Logistik': return <FaUtensils className="text-info" />;
             default: return <FaUsers className="text-primary" />;
         }
     };
@@ -116,7 +119,10 @@ const PengurusBEM = () => {
             case 'Keuangan': return 'success';
             case 'Humas': return 'danger';
             case 'Acara': return 'info';
-            case 'Media': return 'dark';
+            case 'Pendidikan': return 'warning';
+            case 'Kebersihan': return 'success';
+            case 'Kesehatan': return 'danger';
+            case 'Logistik': return 'info';
             default: return 'primary';
         }
     };
@@ -130,13 +136,13 @@ const PengurusBEM = () => {
                 <Container>
                     <div className="text-center py-5">
                         <h1 className="display-4 fw-bold mb-3">Kepengurusan BEM PeTIK</h1>
-                        <p className="lead mb-4">Tim penggerak perubahan dan inovasi di lingkungan kampus</p>
+                        <p className="lead mb-4">Tim profesional yang berdedikasi untuk kemajuan kampus dan mahasiswa</p>
                         <div className="d-flex justify-content-center gap-3">
                             <Button variant="warning" size="lg" className="rounded-pill px-4 fw-bold">
                                 Periode 2024/2025
                             </Button>
                             <Button variant="outline-light" size="lg" className="rounded-pill px-4 fw-bold">
-                                Lihat Struktur
+                                Struktur Organisasi
                             </Button>
                         </div>
                     </div>
@@ -151,7 +157,7 @@ const PengurusBEM = () => {
                         <Card className="border-0 shadow-lg rounded-4 bg-gradient-blue text-white h-100">
                             <Card.Body className="text-center py-4">
                                 <h3 className="fw-bold display-5 mb-3">{pengurus.length}</h3>
-                                <p className="mb-0 fs-5">Total Pengurus</p>
+                                <p className="mb-0 fs-5">Pengurus Inti</p>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -161,15 +167,15 @@ const PengurusBEM = () => {
                                 <h3 className="fw-bold display-5 mb-3">
                                     {new Set(pengurus.map(p => p.division)).size}
                                 </h3>
-                                <p className="mb-0 fs-5">Divisi</p>
+                                <p className="mb-0 fs-5">Bidang Divisi</p>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={4}>
                         <Card className="border-0 shadow-lg rounded-4 bg-gradient-orange text-white h-100">
                             <Card.Body className="text-center py-4">
-                                <h3 className="fw-bold display-5 mb-3">7+</h3>
-                                <p className="mb-0 fs-5">Program Kerja</p>
+                                <h3 className="fw-bold display-5 mb-3">12+</h3>
+                                <p className="mb-0 fs-5">Program Unggulan</p>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -177,7 +183,7 @@ const PengurusBEM = () => {
 
                 {/* Leadership Team */}
                 <h2 className="text-center fw-bold mb-5 display-4 text-gradient" data-aos="fade-up">
-                    <span className="text-primary">Tim</span> <span className="text-warning">Pimpinan</span>
+                    <span className="text-primary">Struktur</span> <span className="text-warning">Pimpinan</span>
                 </h2>
                 <Row className="g-4 mb-5">
                     {pengurus.filter(p => p.division === 'Pimpinan').map((pengurus, index) => (
@@ -218,7 +224,7 @@ const PengurusBEM = () => {
 
                 {/* All Members */}
                 <h2 className="text-center fw-bold mb-5 display-4 text-gradient" data-aos="fade-up">
-                    <span className="text-primary">Anggota</span> <span className="text-warning">BEM</span>
+                    <span className="text-primary">Koordinator</span> <span className="text-warning">Divisi</span>
                 </h2>
                 <Row xs={1} sm={2} md={3} lg={4} className="g-4">
                     {pengurus.filter(p => p.division !== 'Pimpinan').map((pengurus, index) => (

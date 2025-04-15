@@ -7,8 +7,8 @@ import {
   FaUserTie, FaUserFriends, FaFileAlt, FaMoneyBillWave, 
   FaBullhorn, FaCalendarAlt, FaCameraRetro, FaArrowRight,
   FaHeartbeat, FaBroom, FaUtensils, FaGraduationCap, 
-  FaMoneyBillAlt, FaPenAlt, FaLaptopCode,
-  FaMicrophone, FaPaintBrush, 
+  FaMoneyBillAlt, FaPenAlt, FaLaptopCode, FaMicrophone, FaChalkboardTeacher, 
+  FaPaintBrush
 } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Slider from "react-slick";
@@ -25,22 +25,23 @@ import Achievement1 from "../assets/achievement1.png";
 import Achievement2 from "../assets/achievement2.png";
 
 // Import foto anggota
-import anggota1 from "../assets/anggota1.jpg";
+import anggota1 from "../assets/anggota1.jpeg";
 import anggota2 from "../assets/anggota2.jpg";
 import anggota3 from "../assets/anggota3.jpg";
 import anggota4 from "../assets/anggota4.jpg";
 import anggota5 from "../assets/anggota5.jpg";
 import anggota6 from "../assets/anggota6.jpg";
 import anggota7 from "../assets/anggota7.jpg";
+import fatur from "../assets/fa.jpeg";
 
 const anggota = [
-    { nama: "IchWan Nurfitrah", jabatan: "Ketua BEM", foto: anggota1, icon: <FaUserTie size={24} className="mb-2" /> },
-    { nama: "Izan Mar'i", jabatan: "Wakil Ketua", foto: anggota2, icon: <FaUserFriends size={24} className="mb-2" /> },
-    { nama: "Risky Agustian", jabatan: "Sekretaris", foto: anggota3, icon: <FaFileAlt size={24} className="mb-2" /> },
-    { nama: "Sudarman", jabatan: "Bendahara", foto: anggota4, icon: <FaMoneyBillWave size={24} className="mb-2" /> },
-    { nama: "Muhammad Fatih", jabatan: "Koordinator Humas", foto: anggota5, icon: <FaBullhorn size={24} className="mb-2" /> },
-    { nama: "Eka Putri", jabatan: "Koordinator Acara", foto: anggota6, icon: <FaCalendarAlt size={24} className="mb-2" /> },
-    { nama: "Fikri Hidayat", jabatan: "Koordinator Media", foto: anggota7, icon: <FaCameraRetro size={24} className="mb-2" /> },
+    { nama: "Sudarman", jabatan: "Ketua BEM", foto: anggota1, icon: <FaUserTie size={24} className="mb-2" /> },
+    { nama: "Muhammad Riza Al-Fahri", jabatan: "Wakil Ketua", foto: anggota2, icon: <FaUserFriends size={24} className="mb-2" /> },
+    { nama: "Risky Agustian", jabatan: "Koordinator Dapur", foto: anggota3, icon: <FaFileAlt size={24} className="mb-2" /> },
+    { nama: "Firdaus Al-Ayubi", jabatan: "Bendahara", foto: anggota4, icon: <FaMoneyBillWave size={24} className="mb-2" /> },
+    { nama: "Muhammad Ilmiannur", jabatan: "Kesehatan/olahraga", foto: anggota5, icon: <FaHeartbeat size={24} className="mb-2" /> },
+    { nama: "Kholis Ibrohim", jabatan: "Koordinator Pendidikan", foto: anggota6, icon: <FaChalkboardTeacher size={24} className="mb-2" /> },
+    { nama: "Ikhsan Prasetyo", jabatan: "Koordinator Kebersihan", foto: anggota7, icon: <FaCameraRetro size={24} className="mb-2" /> },
 ];
 
 const events = [
@@ -519,13 +520,13 @@ const Home = () => {
                                 <div className="card-body p-4">
                                     <div className="d-flex align-items-center mb-3">
                                         <img 
-                                            src="https://randomuser.me/api/portraits/women/32.jpg" 
+                                            src={anggota1}
                                             alt="Testimoni" 
                                             className="rounded-circle me-3" 
                                             width="50"
                                         />
                                         <div>
-                                            <h6 className="fw-bold mb-0">Dr. Siti Aminah</h6>
+                                            <h6 className="fw-bold mb-0">Indra Ardianto</h6>
                                             <small className="text-muted">Dosen Pembina</small>
                                         </div>
                                     </div>
@@ -541,14 +542,14 @@ const Home = () => {
                                 <div className="card-body p-4">
                                     <div className="d-flex align-items-center mb-3">
                                         <img 
-                                            src="https://randomuser.me/api/portraits/men/45.jpg" 
+                                            src={fatur} 
                                             alt="Testimoni" 
                                             className="rounded-circle me-3" 
                                             width="50"
                                         />
                                         <div>
-                                            <h6 className="fw-bold mb-0">Ahmad Fauzi</h6>
-                                            <small className="text-muted">Mahasiswa 2021</small>
+                                            <h6 className="fw-bold mb-0">Muhammad Faturrahman</h6>
+                                            <small className="text-muted">Mahasiswa 2024</small>
                                         </div>
                                     </div>
                                     <p className="card-text">
@@ -563,14 +564,14 @@ const Home = () => {
                                 <div className="card-body p-4">
                                     <div className="d-flex align-items-center mb-3">
                                         <img 
-                                            src="https://randomuser.me/api/portraits/women/68.jpg" 
+                                            src={anggota2}
                                             alt="Testimoni" 
                                             className="rounded-circle me-3" 
                                             width="50"
                                         />
                                         <div>
-                                            <h6 className="fw-bold mb-0">Nurul Hidayati</h6>
-                                            <small className="text-muted">Mitra Community</small>
+                                            <h6 className="fw-bold mb-0">Izan Mar'i</h6>
+                                            <small className="text-muted">Mahasiswa 2025</small>
                                         </div>
                                     </div>
                                     <p className="card-text">
@@ -583,7 +584,7 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* CTA Section */}
+    
             <section className="py-5 bg-gradient-primary text-white">
                 <div className="container text-center py-4">
                     <h2 className="fw-bold mb-3">Ayo Bergabung Bersama Kami!</h2>
