@@ -42,7 +42,7 @@ const Divisi = () => {
   // Data for divisions with icons
   const divisiData = [
     {
-      id: 'kesehatan',
+      id: 'kesehatan`',
       title: "Divisi Kesehatan & Olahraga",
       description: "Bertanggung jawab atas kesehatan mahasantri dan kegiatan olahraga",
       image: kesehatanImg,
@@ -50,7 +50,7 @@ const Divisi = () => {
       color: "primary"
     },
     {
-      id: 'kebersihan',
+      id: 'kebersihan`',
       title: "Divisi Kebersihan",
       description: "Mengatur kebersihan lingkungan pesantren",
       image: kebersihanImg,
@@ -58,7 +58,7 @@ const Divisi = () => {
       color: "success"
     },
     {
-      id: 'dapur',
+      id: 'dapur`',
       title: "Divisi Dapur",
       description: "Mengelola kebutuhan dapur dan makanan",
       image: dapurImg,
@@ -66,7 +66,7 @@ const Divisi = () => {
       color: "danger"
     },
     {
-      id: 'pendidikan',
+      id: 'pendidikan`',
       title: "Divisi Pendidikan",
       description: "Mengatur kegiatan pembelajaran dan kurikulum",
       image: pendidikanImg,
@@ -74,7 +74,7 @@ const Divisi = () => {
       color: "info"
     },
     {
-      id: 'keuangan',
+      id: 'keuangan`',
       title: "Bagian Keuangan",
       description: "Mengelola keuangan dan transaksi BEM",
       image: keuanganImg,
@@ -82,7 +82,7 @@ const Divisi = () => {
       color: "warning"
     },
     {
-      id: 'sekretaris',
+      id: 'sekretaris`',
       title: "Bagian Sekretaris",
       description: "Mengurus administrasi dan dokumentasi",
       image: sekretarisImg,

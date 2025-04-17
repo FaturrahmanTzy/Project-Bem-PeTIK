@@ -2,31 +2,73 @@ import React, { useState } from 'react';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import petik from '../../assets/PeTIK.jpg';
 import gogle from '../../assets/google.png';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [nim, setNim] = useState(''); // Changed from password to NIM
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log({ username, password, rememberMe });
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await axios.post('https://profur.rikpetik.site/api/v1/login', {
+        username,
+        nim // Changed from password to NIM
+      }, {
+        withCredentials: true,
+      });
+      
+      // Handle successful login
+      if (response.data.token) {
+        // Store token if remember me is checked
+        if (rememberMe) {
+          localStorage.setItem('token', response.data.token);
+        }
+        
+        // Redirect based on role
+        const redirectPath = response.data.role === 'admin' ? '/dashboard' : '/';
+        navigate(redirectPath);
+      } else {
+        throw new Error('Token tidak diterima dari server');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      let errorMsg = 'Login gagal. Silakan coba lagi.';
+      
+      if (err.response) {
+        // Handle specific error messages from backend
+        if (err.response.status === 401) {
+          errorMsg = 'NIM tidak ditemukan';
+        } else if (err.response.status === 400) {
+          errorMsg = err.response.data.message || 'Username tidak cocok dengan yang sudah terdaftar';
+        }
+      } else if (err.request) {
+        errorMsg = 'Tidak ada respon dari server';
+      } else {
+        errorMsg = err.message;
+      }
+      
+      setError(errorMsg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    
     <div className="login-container">
       <div className="login-glass-card">
         <div className="login-header">
           <div className="logo-container">
-            <img 
-              src={petik} 
-              alt="BEM PeTIK Logo" 
-              className="logo"
-            />
+            <img src={petik} alt="BEM PeTIK Logo" className="logo" />
           </div>
           <h1>BEM PeTIK</h1>
           <p className="subtitle">Portal Mahasiswa Pendidikan TIK</p>
@@ -34,31 +76,27 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
-            <span className="input-icon">
-              <FaUser />
-            </span>
+            <span className="input-icon"><FaUser /></span>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="NIM atau Email"
+              placeholder="Username"
               required
             />
           </div>
 
           <div className="input-group">
-            <span className="input-icon">
-              <FaLock />
-            </span>
+            <span className="input-icon"><FaLock /></span>
             <input
               type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              value={nim}
+              onChange={(e) => setNim(e.target.value)}
+              placeholder="NIM"  // Changed from Password to NIM
               required
             />
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="password-toggle"
               onClick={() => setShowPassword(!showPassword)}
             >
@@ -72,24 +110,24 @@ const Login = () => {
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
+                className="remember-me-checkbox"
+                required
               />
               <span>Ingat Saya</span>
             </label>
-            <a href="/forgot-password" className="forgot-password">
-              Lupa Password?
-            </a>
+            <a href="/forgot-password" className="forgot-password">Lupa NIM?</a>  {/* Changed text */}
           </div>
 
-          <button type="submit" className="login-button">
-            Masuk
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? 'Memproses...' : 'Masuk'}
             <span className="button-overlay"></span>
           </button>
         </form>
 
+        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+
         <div className="login-footer">
-          <p>
-            Belum punya akun? <a href="/register">Daftar disini</a>
-          </p>
+          <p>Belum punya akun? <a href="/register">Daftar disini</a></p>
           <div className="social-login">
             <p>Atau masuk dengan:</p>
             <div className="social-icons">
@@ -110,14 +148,13 @@ const Login = () => {
             <div key={i} className="particle"></div>
           ))}
         </div>
-        <div className="welcome-message fw-bold ">
+        <div className="welcome-message fw-bold">
           <h2>Selamat Datang di BEM PeTIK</h2>
-          <p>
-            Wadah aspirasi dan pengembangan diri mahasiswa Pendidikan Teknologi Informasi dan Komunikasi
-          </p>
+          <p>Wadah aspirasi dan pengembangan diri mahasiswa Pendidikan Teknologi Informasi dan Komunikasi</p>
         </div>
       </div>
-          <style jsx global> {`
+
+          <style> {`
               @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
               :root {
