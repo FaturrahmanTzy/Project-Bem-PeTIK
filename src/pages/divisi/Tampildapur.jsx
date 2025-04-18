@@ -1,316 +1,274 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Tab, Nav, Image, Badge, Table, Form } from 'react-bootstrap';
-import { FaUtensils, FaCalendarAlt, FaUsers, FaSearch, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import { 
+  Container, 
+  Row, 
+  Col, 
+  Card, 
+  Button, 
+  Spinner, 
+  Alert, 
+  Image,
+  Badge,
+  InputGroup,
+  Form
+} from 'react-bootstrap';
+import { 
+  FaUtensils, 
+  FaSearch, 
+  FaCalendarAlt, 
+  FaInfoCircle,
+  FaUsers,
+  FaClock,
+  FaCheck,
+  FaHourglassHalf,
+  FaTimes
+} from 'react-icons/fa';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const DapurModern = () => {
-  // State untuk data
+const TampilDapur = () => {
   const [makanan, setMakanan] = useState([]);
-  const [menu, setMenu] = useState([]);
-  const [piket, setPiket] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('makanan');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  // Base URL API
-  const baseUrl = 'https://profur.rikpetik.site/api/v1';
-  const baseImageUrl = 'https://profur.rikpetik.site';
+  // Data kegiatan dapur lokal
+  const [kegiatanDapur] = useState([
+    { id: 1, aktivitas: 'Memasak nasi goreng spesial', waktu: '10:00 - 11:30', status: 'Selesai' },
+    { id: 2, aktivitas: 'Menyiapkan bahan untuk makan siang', waktu: '11:30 - 12:15', status: 'Proses' },
+    { id: 3, aktivitas: 'Membersihkan area memasak', waktu: '13:00 - 13:30', status: 'Menunggu' },
+    { id: 4, aktivitas: 'Menyiapkan makanan penutup', waktu: '14:00 - 15:00', status: 'Menunggu' },
+  ]);
 
-  // Fetch data
+  // Initialize AOS animations
   useEffect(() => {
-    const fetchData = async () => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchDataMakanan = async () => {
       try {
         const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('Token tidak ditemukan');
-        }
+        const response = await axios.get('https://profur.rikpetik.site/api/v1/kesehatan/makanan', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         
-        // Fetch semua data sekaligus dengan error handling untuk masing-masing request
-        const [makananRes, menuRes, piketRes] = await Promise.all([
-          axios.get(`${baseUrl}/kesehatan/makanan`, {
-            headers: { Authorization: `Bearer ${token}` }
-          }).catch(err => {
-            console.error('Error fetching makanan:', err);
-            return { data: { data: [] } }; // Return empty array jika error
-          }),
-          axios.get(`${baseUrl}/dapur/menu`, {
-            headers: { Authorization: `Bearer ${token}` }
-          }).catch(err => {
-            console.error('Error fetching menu:', err);
-            return { data: { data: [] } }; // Return empty array jika error
-          }),
-          axios.get(`${baseUrl}/dapur/piket`, {
-            headers: { Authorization: `Bearer ${token}` }
-          }).catch(err => {
-            console.error('Error fetching piket:', err);
-            return { data: { data: [] } }; // Return empty array jika error
-          })
-        ]);
-
-        // Pastikan data yang disimpan adalah array
-        setMakanan(Array.isArray(makananRes.data.data) ? makananRes.data.data : []);
-        setMenu(Array.isArray(menuRes.data.data) ? menuRes.data.data : []);
-        setPiket(Array.isArray(piketRes.data.data) ? piketRes.data.data : []);
+        // Add image URLs to the data
+        const dataWithImages = Array.isArray(response.data.data)
+        ? response.data.data.map(item => ({
+            ...item,
+            imageUrl: item.image ? `https://profur.rikpetik.site${item.image}` : null
+          }))
+        : [];
+      
         
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        Swal.fire('Error', 'Gagal memuat data', 'error');
-      } finally {
+        setMakanan(dataWithImages);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError(err.response?.data?.message || 'Gagal memuat data makanan');
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchDataMakanan();
   }, []);
 
-  // Filter data berdasarkan search term
-  const filteredMakanan = makanan.filter(item =>
-    item?.nama_makanan?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
-  const filteredMenu = menu.filter(item =>
-    item?.nama_menu?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
-  const filteredPiket = piket.filter(item =>
-    item?.nama_kelompok?.toLowerCase().includes(searchTerm.toLowerCase())
+  const getStatusIcon = (status) => {
+    switch(status) {
+      case 'Selesai': return <FaCheck className="text-success me-1" />;
+      case 'Proses': return <FaHourglassHalf className="text-warning me-1" />;
+      case 'Menunggu': return <FaTimes className="text-secondary me-1" />;
+      default: return <FaClock className="text-info me-1" />;
+    }
+  };
+
+  if (loading) return (
+    <div className="text-center py-5">
+      <Spinner animation="border" variant="primary" />
+      <p className="mt-3">Memuat data dapur...</p>
+    </div>
   );
 
-  if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-        <div className="text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <p className="mt-3">Memuat data dapur...</p>
-        </div>
-      </div>
-    );
-  }
+  if (error) return (
+    <Alert variant="danger" className="mx-3 my-5">
+      <FaInfoCircle className="me-2" />
+      {error}
+    </Alert>
+  );
 
   return (
-    <Container fluid className="px-4 py-4">
-      <h2 className="fw-bold mb-4">
-        <FaUtensils className="me-2 text-warning" /> Manajemen Dapur
-      </h2>
+    <Container className="py-4">
+      {/* Header Section */}
+      <div className="text-center mb-5" data-aos="fade-down">
+        <h1 className="display-5 fw-bold mb-3">
+          <FaUtensils className="text-primary me-3" />
+          Dapur Modern
+        </h1>
+        <p className="lead text-muted">Kelola makanan dan aktivitas dapur dengan mudah</p>
+      </div>
 
-      {/* Search Bar */}
-      <Card className="mb-4 shadow-sm">
-        <Card.Body>
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="input-group" style={{ maxWidth: '400px' }}>
-              <span className="input-group-text bg-white">
-                <FaSearch className="text-muted" />
-              </span>
+      {/* Navigation Buttons */}
+      <div className="d-flex flex-wrap gap-3 justify-content-center mb-5" data-aos="fade-up">
+        <Button 
+          variant="outline-warning" 
+          onClick={() => navigate('/divisi/dapur/menumakanan`')}
+          className="d-flex align-items-center px-4 py-2"
+        >
+          <FaCalendarAlt className="me-2" /> Menu Makanan
+        </Button>
+        <Button 
+          variant="outline-info" 
+          onClick={() => navigate('/divisi/dapur/piketdapur`')}
+          className="d-flex align-items-center px-4 py-2"
+        >
+          <FaInfoCircle className="me-2" /> Lihat Piket
+        </Button>
+      </div>
+
+      {/* Food Menu Section */}
+      <section className="mb-5" data-aos="fade-up">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2 className="h4 fw-bold mb-0">
+            <FaUtensils className="text-warning me-2" />
+            Menu Makanan Hari Ini
+          </h2>
+          <div className="w-25">
+            <InputGroup>
+              <InputGroup.Text>
+                <FaSearch />
+              </InputGroup.Text>
               <Form.Control
-                type="search"
-                placeholder="Cari..."
-                value={searchTerm}
+                placeholder="Cari makanan..."
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-start-0"
               />
-            </div>
-            <Badge bg="light" text="dark" className="px-3 py-2">
-              {activeTab === 'makanan' && `Total: ${filteredMakanan.length} Makanan`}
-              {activeTab === 'menu' && `Total: ${filteredMenu.length} Menu`}
-              {activeTab === 'piket' && `Total: ${filteredPiket.length} Kelompok`}
-            </Badge>
+            </InputGroup>
           </div>
-        </Card.Body>
-      </Card>
+        </div>
 
-      {/* Tabs Navigation */}
-      <Tab.Container activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
-        <Nav variant="tabs" className="mb-4">
-          <Nav.Item>
-            <Nav.Link eventKey="makanan" className="d-flex align-items-center">
-              <FaUtensils className="me-2" /> Data Makanan
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="menu" className="d-flex align-items-center">
-              <FaCalendarAlt className="me-2" /> Menu Makanan
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="piket" className="d-flex align-items-center">
-              <FaUsers className="me-2" /> Jadwal Piket
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
-
-        {/* Tab Content */}
-        <Tab.Content>
-          {/* Tab Data Makanan */}
-          <Tab.Pane eventKey="makanan">
-            {filteredMakanan.length === 0 ? (
-              <Card className="text-center py-5">
-                <Card.Body>
-                  <Image 
-                    src="/img/empty-food.svg" 
-                    fluid 
-                    style={{ maxHeight: '200px' }} 
-                    className="mb-4 opacity-75"
-                  />
-                  <h5>Belum ada data makanan</h5>
-                  <Button variant="primary" className="mt-3">
-                    <FaPlus className="me-2" /> Tambah Makanan
-                  </Button>
-                </Card.Body>
-              </Card>
-            ) : (
-              <Row className="g-4">
-                {filteredMakanan.map(item => (
-                  <Col key={item.id} lg={4} md={6}>
-                    <Card className="h-100 shadow-sm border-0">
-                      <div style={{ height: '200px', overflow: 'hidden' }}>
-                        <Image
-                          src={item.image ? `${baseImageUrl}${item.image}` : '/img/food-placeholder.jpg'}
-                          alt={item.nama_makanan}
-                          fluid
-                          className="w-100 h-100 object-fit-cover"
-                          onError={(e) => {
-                            e.target.src = '/img/food-placeholder.jpg';
-                          }}
-                        />
-                      </div>
-                      <Card.Body>
-                        <div className="d-flex justify-content-between align-items-start">
-                          <Card.Title className="fw-bold mb-2">{item.nama_makanan}</Card.Title>
-                          <div>
-                            <Button variant="outline-primary" size="sm" className="me-2">
-                              <FaEdit />
-                            </Button>
-                          </div>
-                        </div>
-                        <Card.Text className="text-muted">
-                          {item.deskripsi || 'Tidak ada deskripsi'}
-                        </Card.Text>
-                      </Card.Body>
-                      <Card.Footer className="bg-white border-0">
-                        <small className="text-muted">
-                          Terakhir diupdate: {item.updated_at ? new Date(item.updated_at).toLocaleDateString() : 'Tidak diketahui'}
-                        </small>
-                      </Card.Footer>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-            )}
-          </Tab.Pane>
-
-          {/* Tab Menu Makanan */}
-          <Tab.Pane eventKey="menu">
-            <Card className="border-0 shadow-sm">
-              <Card.Body className="p-0">
-                <Table hover responsive className="mb-0">
-                  <thead className="bg-light">
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Menu</th>
-                      <th>Makanan</th>
-                      <th>Deskripsi</th>
-                      <th>Tanggal</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredMenu.map((item, index) => (
-                      <tr key={item.id}>
-                        <td>{index + 1}</td>
-                        <td className="fw-semibold">{item.nama_menu || '-'}</td>
-                        <td>
-                          {item.makanan ? (
-                            <Badge bg="light" text="dark" className="me-1">
-                              {item.makanan.nama_makanan}
-                            </Badge>
-                          ) : (
-                            <Badge bg="secondary">Tidak ada makanan</Badge>
-                          )}
-                        </td>
-                        <td>{item.deskripsi || '-'}</td>
-                        <td>{item.tanggal ? new Date(item.tanggal).toLocaleDateString() : '-'}</td>
-                        <td>
-                          <Button variant="outline-primary" size="sm" className="me-2">
-                            <FaEdit />
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-                {filteredMenu.length === 0 && (
-                  <div className="text-center py-5">
-                    <Image 
-                      src="/img/empty-menu.svg" 
-                      fluid 
-                      style={{ maxHeight: '150px' }} 
-                      className="mb-3 opacity-75"
+        {makanan.length === 0 ? (
+          <Card className="text-center py-5 shadow-sm">
+            <Card.Body>
+              <img 
+                src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" 
+                alt="No food" 
+                style={{ height: '150px', opacity: 0.7 }}
+                className="mb-4"
+              />
+              <h4 className="text-muted">Belum ada menu makanan</h4>
+            </Card.Body>
+          </Card>
+        ) : (
+          <Row className="g-4">
+            {makanan.map((item, index) => (
+              <Col key={item.id} md={6} lg={4} xl={3} data-aos="fade-up" data-aos-delay={index % 4 * 100}>
+                <Card className="h-100 shadow-sm border-0">
+                  <div className="ratio ratio-16x9">
+                    <Image
+                      src={item.imageUrl || 'https://via.placeholder.com/300x200?text=Gambar+Makanan'}
+                      alt={item.nama_makanan}
+                      className="card-img-top object-fit-cover"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/300x200?text=Gambar+Tidak+Tersedia';
+                      }}
                     />
-                    <h5>Belum ada data menu</h5>
                   </div>
-                )}
-              </Card.Body>
-            </Card>
-          </Tab.Pane>
+                  <Card.Body>
+                    <Card.Title className="fw-bold">{item.nama_makanan}</Card.Title>
+                    <Card.Text className="text-muted">
+                      {item.deskripsi || 'Tidak ada deskripsi'}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        )}
+      </section>
 
-          {/* Tab Jadwal Piket */}
-          <Tab.Pane eventKey="piket">
-            <Row className="g-4">
-              {filteredPiket.map(item => (
-                <Col key={item.id} lg={6}>
-                  <Card className="h-100 shadow-sm border-0">
-                    <Card.Header className="bg-primary text-white">
-                      <Card.Title className="mb-0">
-                        Kelompok: {item.nama_kelompok || 'Tanpa nama'}
-                      </Card.Title>
-                    </Card.Header>
-                    <Card.Body>
-                      <h6 className="mb-3">Anggota Kelompok:</h6>
-                      <ul className="list-group list-group-flush">
-                        {item.anggota_kelompok && typeof item.anggota_kelompok === 'string' ? (
-                          item.anggota_kelompok.split(',').map((anggota, idx) => (
-                            <li key={idx} className="list-group-item">
-                              {anggota.trim() || `Anggota ${idx + 1}`}
-                            </li>
-                          ))
-                        ) : (
-                          <li className="list-group-item text-muted">Tidak ada anggota</li>
-                        )}
-                      </ul>
-                    </Card.Body>
-                    <Card.Footer className="bg-white border-0 d-flex justify-content-end">
-                      <Button variant="outline-primary" size="sm" className="me-2">
-                        <FaEdit />
-                      </Button>
-                    </Card.Footer>
-                  </Card>
-                </Col>
-              ))}
-              {filteredPiket.length === 0 && (
-                <Col>
-                  <Card className="text-center py-5 border-0 shadow-sm">
-                    <Card.Body>
-                      <Image 
-                        src="/img/empty-team.svg" 
-                        fluid 
-                        style={{ maxHeight: '200px' }} 
-                        className="mb-4 opacity-75"
-                      />
-                      <h5>Belum ada jadwal piket</h5>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              )}
-            </Row>
-          </Tab.Pane>
-        </Tab.Content>
-      </Tab.Container>
+      {/* Kitchen Activities Section */}
+      <section data-aos="fade-up">
+        <h2 className="h4 fw-bold mb-4">
+          <FaUsers className="text-info me-2" />
+          Jadwal Kegiatan Dapur
+        </h2>
+        
+        <Card className="shadow-sm border-0">
+          <Card.Body className="p-0">
+            {kegiatanDapur.map((kegiatan, index) => (
+              <div 
+                key={kegiatan.id} 
+                className={`p-4 ${index !== kegiatanDapur.length - 1 ? 'border-bottom' : ''}`}
+              >
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h5 className="mb-1">{kegiatan.aktivitas}</h5>
+                    <small className="text-muted">
+                      <FaClock className="me-1" />
+                      {kegiatan.waktu}
+                    </small>
+                  </div>
+                  <Badge 
+                    bg={kegiatan.status === 'Selesai' ? 'success' : 
+                        kegiatan.status === 'Proses' ? 'warning' : 'secondary'}
+                    className="d-flex align-items-center px-3 py-2"
+                  >
+                    {getStatusIcon(kegiatan.status)}
+                    {kegiatan.status}
+                  </Badge>
+                </div>
+              </div>
+            ))}
+          </Card.Body>
+        </Card>
+      </section>
+
+      <style>{`
+        .card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        
+        .object-fit-cover {
+          object-fit: cover;
+        }
+        
+        .ratio-16x9::before {
+          padding-top: 56.25%;
+        }
+        
+        .badge {
+          font-weight: 500;
+          border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+          .w-25 {
+            width: 100% !important;
+            margin-top: 1rem;
+          }
+          
+          .d-flex.justify-content-between {
+            flex-direction: column;
+          }
+        }
+      `}</style>
     </Container>
   );
 };
 
-export default DapurModern;
+export default TampilDapur;

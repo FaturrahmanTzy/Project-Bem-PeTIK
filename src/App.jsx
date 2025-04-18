@@ -16,6 +16,8 @@ import PiketDapur from './pages/dashboard/dapur/PiketDapur';
 import AddPiketDapur from './pages/dashboard/dapur/AddPiketDapur';
 import MenuMakanan from './pages/dashboard/dapur/MenuMakanan';
 import Tampildapur from './pages/divisi/Tampildapur';
+import Menu_makan from './pages/divisi/Menu_makan';
+import Piket_Dapur from './pages/divisi/Piket_Dapur';
 
 
 
@@ -36,6 +38,8 @@ const App = () => {
           <Route path = "/dapur/piketdapur/add" element = {<AddPiketDapur />}/>
           <Route path = "/dapur/menumakanan" element = {<MenuMakanan />}/>
           <Route path = "/divisi/dapur`" element = {<Tampildapur />}/>
+          <Route path = "/divisi/dapur/menumakanan`" element = {<Menu_makan />}/>
+          <Route path = "/divisi/dapur/piketdapur`" element = {<Piket_Dapur />}/>
 
           <Route path = "/login" element = { <Login/> }/>
           <Route path = "*" element = { <ErrorPage/>} />
