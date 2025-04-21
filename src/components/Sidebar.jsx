@@ -419,7 +419,7 @@ const Sidebar = () => {
       <div className="mt-auto pt-4">
         <button className="btn btn-outline-danger w-100 rounded-pill  d-flex align-items-center justify-content-center">
           <RiLogoutBoxRLine className="me-2" />
-          <span style={{ color: '#dc3545' }}>Keluar</span>
+          <span><NavLink to="/login" style={{ color: '#dc3545' }} className="text-decoration-none">Keluar </NavLink></span>
         </button>
       </div>
 

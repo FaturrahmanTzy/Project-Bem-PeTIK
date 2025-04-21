@@ -33,6 +33,7 @@ import anggota5 from "../assets/anggota5.jpg";
 import anggota6 from "../assets/anggota6.jpg";
 import anggota7 from "../assets/anggota7.jpg";
 import fatur from "../assets/fa.jpeg";
+import { Link } from "react-router-dom";
 
 const anggota = [
     { nama: "Sudarman", jabatan: "Ketua BEM", foto: anggota1, icon: <FaUserTie size={24} className="mb-2" /> },
@@ -594,7 +595,7 @@ const Home = () => {
                             Daftar Sekarang
                         </button>
                         <button className="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">
-                            Lihat Kegiatan
+                            <Link to="/divisi" className="text-white text-decoration-none">Lihat Kegiatan </Link>
                         </button>
                         <button className="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">
                             Hubungi Kami

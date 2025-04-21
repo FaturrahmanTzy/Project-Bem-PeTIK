@@ -18,6 +18,9 @@ import MenuMakanan from './pages/dashboard/dapur/MenuMakanan';
 import Tampildapur from './pages/divisi/Tampildapur';
 import Menu_makan from './pages/divisi/Menu_makan';
 import Piket_Dapur from './pages/divisi/Piket_Dapur';
+import Pendidikan from './pages/divisi/pendidikan/pendidikan';
+import Kebersihan from './pages/divisi/kebersihan/Alat';
+import Piket from './pages/divisi/kebersihan/Piket';
 
 
 
@@ -40,6 +43,10 @@ const App = () => {
           <Route path = "/divisi/dapur`" element = {<Tampildapur />}/>
           <Route path = "/divisi/dapur/menumakanan`" element = {<Menu_makan />}/>
           <Route path = "/divisi/dapur/piketdapur`" element = {<Piket_Dapur />}/>
+          <Route path = "/divisi/pendidikan`" element = {<Pendidikan />}/>
+          <Route path = "/divisi/kebersihan`" element = {<Kebersihan />}/>
+          <Route path = "/divisi/kebersihan/Piket`" element = {<Piket />}/>
+
 
           <Route path = "/login" element = { <Login/> }/>
           <Route path = "*" element = { <ErrorPage/>} />

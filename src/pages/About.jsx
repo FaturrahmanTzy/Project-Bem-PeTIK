@@ -6,6 +6,7 @@ import "./about.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 const About = () => {
     useEffect(() => {
@@ -242,7 +243,7 @@ const About = () => {
                             Daftar Sekarang
                         </button>
                         <button className="btn btn-outline-primary btn-lg px-4 rounded-pill fw-bold">
-                            Lihat Kegiatan
+                            <Link to="/divisi"> Lihat Kegiatan </Link>
                         </button>
                     </div>
                 </div>
