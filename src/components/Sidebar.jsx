@@ -16,6 +16,8 @@ import {
   FaClipboardList
 } from 'react-icons/fa';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
+
 
 const Sidebar = () => {
   const [openMenus, setOpenMenus] = React.useState({
@@ -23,12 +25,24 @@ const Sidebar = () => {
     laporan: false,
     divisi: false
   });
+  const navigate = useNavigate();
 
   const toggleMenu = (menu) => {
     setOpenMenus(prev => ({
       ...prev,
       [menu]: !prev[menu]
     }));
+  };
+
+  const handleLogout = () => {
+    // Hapus semua data autentikasi
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('role');
+    
+    // Redirect ke halaman login dengan replace (tidak bisa kembali)
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -417,9 +431,12 @@ const Sidebar = () => {
 
       {/* Logout Button */}
       <div className="mt-auto pt-4">
-        <button className="btn btn-outline-danger w-100 rounded-pill  d-flex align-items-center justify-content-center">
+        <button 
+          onClick={handleLogout}
+          className="btn btn-outline-danger w-100 rounded-pill d-flex align-items-center justify-content-center"
+        >
           <RiLogoutBoxRLine className="me-2" />
-          <span><NavLink to="/login" style={{ color: '#dc3545' }} className="text-decoration-none">Keluar </NavLink></span>
+          <span>Keluar</span>
         </button>
       </div>
 

@@ -3,13 +3,15 @@ import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
 import { 
   FaUserTie, FaUserFriends, FaFileAlt, FaMoneyBillWave, 
   FaBullhorn, FaCalendarAlt, FaCameraRetro, FaArrowRight,
   FaHeartbeat, FaBroom, FaUtensils, FaGraduationCap, 
   FaMoneyBillAlt, FaPenAlt, FaLaptopCode, FaMicrophone, FaChalkboardTeacher, 
-  FaPaintBrush
+  FaPaintBrush,
 } from "react-icons/fa";
+import { FaBriefcase, FaQuoteLeft,FaTwitter, FaInstagram, FaLinkedin} from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,8 +23,8 @@ import About from "../assets/about.jpg";
 import Event1 from "../assets/event1.png";
 import Event2 from "../assets/event2.png";
 import Event3 from "../assets/event3.png";
-import Achievement1 from "../assets/achievement1.png";
-import Achievement2 from "../assets/achievement2.png";
+
+
 
 // Import foto anggota
 import anggota1 from "../assets/anggota1.jpeg";
@@ -33,7 +35,69 @@ import anggota5 from "../assets/anggota5.jpg";
 import anggota6 from "../assets/anggota6.jpg";
 import anggota7 from "../assets/anggota7.jpg";
 import fatur from "../assets/fa.jpeg";
+
+
+import alumni1 from "../assets/alumni1.png"; // Add these images to your assets
+import alumni2 from "../assets/alumni2.png";
+import alumni3 from "../assets/alumni3.png";
+import alumni4 from "../assets/alumni4.png";
 import { Link } from "react-router-dom";
+
+const alumniData = [
+  {
+    id: 1,
+    name: "Muhammad Firdaus",
+    graduationYear: 2023,
+    currentPosition: "Peminatan Pemrograman Web",
+    testimonial: "Di Pesantren PeTIK Depok, Firdaus memilih jurusan Peminatan Pemrograman Web. Untuk menjaga semangatnya dalam menjalani perkuliahan, Firdaus selalu mengingat orang tuanya, terutama ibunya yang kini menjadi tumpuan harapannya sejak ayahnya meninggal saat Firdaus masih kelas 3 MTs. “Ayah saya meninggal saat saya kelas 3 mts, waktu itu saya sedang tes wisuda tapi nggak lama ayah saya meninggal dan tidak sempat melihat saya wisuda, jadi saya sangat ingin membuat orangtua saya bangga melihat saya.” Kenang Firdaus.",
+    photo: alumni1,
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#"
+    }
+  },
+  {
+    id: 2,
+    name: "Abdul Kadir Jailani",
+    graduationYear: 2018,
+    currentPosition: "Network Engineer - PT Data Trust",
+    testimonial: "Selama belajar di Pesantren PeTIK, banyak ilmu yang saya dapatkan baik dari ilmu IT maupun Ilmu agama. Walaupun bukan berlatar belakang dari jurusan IT di sekolah sebelumnya, saya terus berusaha untuk dapat menguasainya ketika menjalani pendidikan di Pesantren PeTIK. Saat ini saya bekerja di PT Data Trust sebagai Network Engineer.” Abdul Kadir Jailani, Alumni Mahasantri PeTIK angkatan 4.",
+    photo: alumni2,
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#"
+    }
+  },
+  {
+    id: 3,
+    name: "Aris Sandi",
+    graduationYear: 2017,
+    currentPosition: "Senior Java Developer",
+    testimonial: "Pertama kali masuk Pesantren PeTIK, saya tidak banyak mengetahui tentang komputer bahkan tidak bisa mengoperasikannya. Alhamdulillah setelah menjalani pendidikan di Pesantren PeTIK, saya bisa memiliki kompetensi IT khususnya bidang programing. Saat ini saya bekerja di PT Mitracom Ekasarana Kawasan Mega Kuningan, Gedung The East Tower sebagai Senior Java Developer Aris Sandi Alumni Pesantren PeTIK Angkatan 5",
+
+    photo: alumni3,
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#"
+    }
+  },
+  {
+    id: 4,
+    name: "Teafanno Entant Anantya Putra",
+    graduationYear: 2017,
+    currentPosition: "Desainer Grafis - PT. Lanqi Lightbox",
+    testimonial: "Saya banyak menerapkan kemampuan yang saya pelajari saat belajar di pesantren PeTIK, terutama dalam hal bersosialisasi dan bekerjasama, sehingga saya bisa mendapatkan pekerjaan sesuai minat saya,",
+    photo: alumni4,
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#"
+    }
+  }
+];
 
 const anggota = [
     { nama: "Sudarman", jabatan: "Ketua BEM", foto: anggota1, icon: <FaUserTie size={24} className="mb-2" /> },
@@ -69,20 +133,6 @@ const events = [
   }
 ];
 
-const achievements = [
-  {
-    title: "Juara 1 Lomba Debat Nasional 2023",
-    description: "Tim debat BEM PeTIK meraih juara 1 dalam kompetisi debat antar perguruan tinggi se-Indonesia",
-    image: Achievement1,
-    year: 2023
-  },
-  {
-    title: "Penghargaan Organisasi Terinovatif 2022",
-    description: "BEM PeTIK mendapatkan penghargaan sebagai organisasi mahasiswa terinovatif dari Kemendikbud",
-    image: Achievement2,
-    year: 2022
-  }
-];
 
 const programs = [
   {
@@ -143,6 +193,8 @@ const Home = () => {
         ],
     };
 
+    
+
     useEffect(() => {
         AOS.init({ 
             duration: 800, 
@@ -150,6 +202,7 @@ const Home = () => {
             easing: 'ease-out-quart'
         });
     }, []);
+    
 
     return (
         <div className="bg-light">
@@ -216,7 +269,7 @@ const Home = () => {
                                 </div>
                                 
                                 <button className="btn btn-primary rounded-pill px-4 py-2">
-                                    Pelajari Lebih Lanjut <FaArrowRight className="ms-2" />
+                                    <Link to="/about" className="text-white text-decoration-none">Pelajari Lebih Lanjut <FaArrowRight className="ms-2" /></Link>
                                 </button>
                             </div>
                         </div>
@@ -470,41 +523,92 @@ const Home = () => {
             </section>
 
             {/* Achievements Section */}
-            <section className="py-5 bg-light">
-                <div className="container">
-                    <div className="text-center mb-5">
-                        <h2 className="text-gradient-primary fw-bold">Prestasi Kami</h2>
-                        <div className="divider mx-auto"></div>
-                        <p className="text-muted">Penghargaan dan pencapaian yang telah kami raih</p>
-                    </div>
-                    
-                    <div className="row g-4 justify-content-center">
-                        {achievements.map((achievement, index) => (
-                            <div className="col-md-6" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                                <div className="card border-0 shadow-sm h-100">
-                                    <div className="row g-0">
-                                        <div className="col-md-5">
-                                            <img 
-                                                src={achievement.image} 
-                                                className="img-fluid rounded-start h-100" 
-                                                alt={achievement.title}
-                                                style={{ objectFit: 'cover' }}
-                                            />
-                                        </div>
-                                        <div className="col-md-7">
-                                            <div className="card-body">
-                                                <span className="badge bg-primary bg-opacity-10 text-primary mb-2">{achievement.year}</span>
-                                                <h5 className="fw-bold">{achievement.title}</h5>
-                                                <p className="card-text">{achievement.description}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+            
+
+
+
+    
+{/* Alumni Section */}
+<section className="py-5 bg-light">
+  <div className="container">
+    <div className="text-center mb-5">
+      <h2 className="text-gradient-primary fw-bold">Tentang Alumni</h2>
+      <div className="divider mx-auto"></div>
+      <p className="text-muted">Mereka yang pernah menjadi bagian dari BEM PeTIK dan kini sukses di berbagai bidang</p>
+    </div>
+    
+    <div className="row g-4">
+      {alumniData.map((alumni, index) => {
+        const [isExpanded, setIsExpanded] = useState(false);
+        const truncatedTestimonial = alumni.testimonial.length > 150 
+          ? alumni.testimonial.substring(0, 150) + "..."
+          : alumni.testimonial;
+
+        return (
+          <div className="col-md-6 col-lg-3" key={alumni.id} data-aos="fade-up" data-aos-delay={index * 100}>
+            <div className="card border-0 shadow-sm h-100 alumni-card">
+              <div className="card-img-top position-relative overflow-hidden" style={{height: '200px'}}>
+                <img 
+                  src={alumni.photo} 
+                  alt={alumni.name}
+                  className="w-100 h-100 object-fit-cover"
+                />
+                <div className="position-absolute bottom-0 start-0 end-0 p-3 text-white" 
+                  style={{background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'}}>
+                  <h5 className="mb-0 fw-bold">{alumni.name}</h5>
+                  <small>Lulus {alumni.graduationYear}</small>
                 </div>
-            </section>
+              </div>
+              <div className="card-body d-flex flex-column">
+                <div className="d-flex align-items-center mb-3">
+                  <FaGraduationCap className="text-primary me-2" />
+                  <small className="text-muted">Angkatan {alumni.graduationYear}</small>
+                </div>
+                <p className="mb-3">
+                  <FaBriefcase className="text-primary me-2" />
+                  {alumni.currentPosition}
+                </p>
+                <div className="bg-light p-3 rounded mb-3 position-relative flex-grow-1">
+                  <FaQuoteLeft className="text-primary opacity-25" size={24} />
+                  <p className="mb-0 testimonial-text">
+                    {isExpanded ? alumni.testimonial : truncatedTestimonial}
+                    {alumni.testimonial.length > 150 && (
+                      <button 
+                        className="btn btn-link p-0 ms-2 text-primary"
+                        onClick={() => setIsExpanded(!isExpanded)}
+                      >
+                        {isExpanded ? 'Lebih Sedikit' : 'Selengkapnya'}
+                      </button>
+                    )}
+                  </p>
+                </div>
+                <div className="d-flex justify-content-center gap-2 mt-auto">
+                  <a href={alumni.social.linkedin} className="btn btn-sm btn-outline-primary rounded-circle">
+                    <FaLinkedin />
+                  </a>
+                  <a href={alumni.social.twitter} className="btn btn-sm btn-outline-primary rounded-circle">
+                    <FaTwitter />
+                  </a>
+                  <a href={alumni.social.instagram} className="btn btn-sm btn-outline-primary rounded-circle">
+                    <FaInstagram />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+    
+    <div className="text-center mt-5">
+      <button className="btn btn-primary px-4 py-2 rounded-pill">
+        <Link to="/alumni" className="text-white text-decoration-none">
+          Lihat Semua Alumni <FaUserFriends className="ms-2" />
+        </Link>
+      </button>
+    </div>
+    </div>
+</section>
 
             {/* Testimonials Section */}
             <section className="py-5 bg-white">
@@ -592,7 +696,7 @@ const Home = () => {
                     <p className="lead mb-4">Jadilah bagian dari gerakan mahasiswa yang aktif, inspiratif, dan solutif.</p>
                     <div className="d-flex justify-content-center gap-3 flex-wrap">
                         <button className="btn btn-light btn-lg rounded-pill px-4 fw-bold shadow-sm">
-                            Daftar Sekarang
+                            <a href="https://pmbt.petik.or.id/" target="_blank" className="text-decoration-none text-black">Daftar Sekarang</a>
                         </button>
                         <button className="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">
                             <Link to="/divisi" className="text-white text-decoration-none">Lihat Kegiatan </Link>
@@ -612,6 +716,9 @@ const Home = () => {
                 email="ftr2602006@gmail.com"
                 sekolah="Pesantren PeTIK"
             />
+            <style>
+                
+            </style>
         </div>
     );
 };

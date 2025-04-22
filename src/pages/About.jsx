@@ -35,7 +35,7 @@ const About = () => {
                                     Kenali Kami
                                 </button>
                                 <button className="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">
-                                    Struktur Organisasi
+                                    <Link to="/kepengurusan" className="text-white text-decoration-none">Struktur Organisasi</Link>
                                 </button>
                             </div>
                         </div>
@@ -240,10 +240,10 @@ const About = () => {
                     </p>
                     <div className="d-flex justify-content-center gap-3">
                         <button className="btn btn-primary btn-lg px-4 rounded-pill fw-bold">
-                            Daftar Sekarang
+                            <a href="https://pmbt.petik.or.id/" target="_blank" className="text-decoration-none text-white">Daftar Sekarang</a>
                         </button>
                         <button className="btn btn-outline-primary btn-lg px-4 rounded-pill fw-bold">
-                            <Link to="/divisi"> Lihat Kegiatan </Link>
+                            <Link to="/divisi" className="text-decoration-none text-primary"> Lihat Kegiatan </Link>
                         </button>
                     </div>
                 </div>

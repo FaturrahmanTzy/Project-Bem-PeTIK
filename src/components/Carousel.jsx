@@ -6,6 +6,7 @@ import foto2 from "../assets/2.jpg";
 import foto3 from "../assets/3.jpg";
 import "./carousel.css";
 import { FaChevronLeft, FaChevronRight, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Carousel = () => {
     return (
@@ -54,10 +55,10 @@ const Carousel = () => {
                                     <p className="lead mb-4">Mewujudkan kampus yang dinamis melalui program kerja inovatif dan kolaboratif</p>
                                     <div className="d-flex gap-3">
                                         <button className="btn btn-warning btn-lg px-4 rounded-pill fw-bold d-flex align-items-center">
-                                            Jelajahi Kegiatan <FaArrowRight className="ms-2" />
+                                            <Link to="/divisi" className="text-white text-decoration-none">Jelajahi Kegiatan <FaArrowRight className="ms-2" /></Link>
                                         </button>
                                         <button className="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">
-                                            Tentang Kami
+                                            <Link to="/about" className="text-white text-decoration-none">Tentang Kami</Link>
                                         </button>
                                     </div>
                                 </div>
@@ -97,7 +98,7 @@ const Carousel = () => {
                                             Program Kerja <FaArrowRight className="ms-2" />
                                         </button>
                                         <button className="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">
-                                            Event Terbaru
+                                            <Link to="/event" className="text-white text-decoration-none">Event Terbaru</Link>
                                         </button>
                                     </div>
                                 </div>

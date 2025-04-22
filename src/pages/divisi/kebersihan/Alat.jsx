@@ -22,8 +22,10 @@ import {
   CloseCircleOutlined,
   InfoCircleOutlined,
   TeamOutlined,
-  DashboardOutlined
+  DashboardOutlined,
+  
 } from '@ant-design/icons';
+import { FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -189,6 +191,14 @@ const Kebersihan = () => {
 
   return (
     <div style={{ padding: screens.xs ? '16px' : '24px' }}>
+        <Button 
+        variant="outline-secondary" 
+        onClick={() => navigate(-1)}
+        className="mb-4 d-flex align-items-center bg-primary text-white border-0 shadow-sm"
+      >
+        <FaArrowLeft className="me-2" />
+        Kembali
+      </Button>
       <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
         <Col>
           <h1 style={{ 

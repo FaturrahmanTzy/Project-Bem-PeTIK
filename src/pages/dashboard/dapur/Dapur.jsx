@@ -356,7 +356,7 @@ const Dapur = () => {
                         className="food-image"
                         onError={(e) => {
                           console.error('Gagal memuat gambar:', item.nama_makanan, item.imageUrl);
-                          e.target.src = '/img/food-placeholder.jpg';
+                          e.target.src = '/img/food-placeholder.jpg'; // Gambar placeholder
                           e.target.onerror = null; // Mencegah infinite loop
                         }}
                       />

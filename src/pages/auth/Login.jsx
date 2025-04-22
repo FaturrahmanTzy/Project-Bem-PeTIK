@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import petik from '../../assets/PeTIK.jpg';
 import gogle from '../../assets/google.png';
@@ -7,12 +7,22 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
-  const [nim, setNim] = useState(''); // Changed from password to NIM
+  const [nim, setNim] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Cek apakah user sudah login
+// Di komponen Login
+useEffect(() => {
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+  if (token) {
+    const role = localStorage.getItem('role') || 'user';
+    navigate(role === 'admin' ? '/dashboard' : '/', { replace: true });
+  }
+}, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,21 +32,23 @@ const Login = () => {
     try {
       const response = await axios.post('https://profur.rikpetik.site/api/v1/login', {
         username,
-        nim // Changed from password to NIM
+        nim
       }, {
         withCredentials: true,
       });
       
-      // Handle successful login
       if (response.data.token) {
-        // Store token if remember me is checked
+        // Simpan token dan role
         if (rememberMe) {
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('role', response.data.role);
+        } else {
+          sessionStorage.setItem('token', response.data.token);
+          sessionStorage.setItem('role', response.data.role);
         }
         
-        // Redirect based on role
-        const redirectPath = response.data.role === 'admin' ? '/dashboard' : '/';
-        navigate(redirectPath);
+        // Redirect dan replace history (tidak bisa back)
+        navigate(response.data.role === 'admin' ? '/dashboard' : '/', { replace: true });
       } else {
         throw new Error('Token tidak diterima dari server');
       }
@@ -45,7 +57,6 @@ const Login = () => {
       let errorMsg = 'Login gagal. Silakan coba lagi.';
       
       if (err.response) {
-        // Handle specific error messages from backend
         if (err.response.status === 401) {
           errorMsg = 'NIM tidak ditemukan';
         } else if (err.response.status === 400) {
@@ -62,6 +73,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="login-container">

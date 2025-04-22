@@ -10,7 +10,8 @@ import {
   Image,
   Badge,
   InputGroup,
-  Form
+  Form,
+
 } from 'react-bootstrap';
 import { 
   FaUtensils, 
@@ -21,12 +22,15 @@ import {
   FaClock,
   FaCheck,
   FaHourglassHalf,
-  FaTimes
+  FaTimes,
+  FaArrowLeft,
 } from 'react-icons/fa';
+
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 
 const TampilDapur = () => {
   const [makanan, setMakanan] = useState([]);
@@ -106,12 +110,24 @@ const TampilDapur = () => {
   );
 
   return (
+    
     <Container className="py-4">
+
+      <Button 
+        variant="outline-secondary" 
+        onClick={() => navigate(-1)}
+        className="mb-4 d-flex align-items-center"
+        data-aos="fade-right"
+      >
+        <FaArrowLeft className="me-2" />
+        Kembali
+      </Button>
       {/* Header Section */}
       <div className="text-center mb-5" data-aos="fade-down">
+
         <h1 className="display-5 fw-bold mb-3">
           <FaUtensils className="text-primary me-3" />
-          Dapur Modern
+          Menejemen Dapur
         </h1>
         <p className="lead text-muted">Kelola makanan dan aktivitas dapur dengan mudah</p>
       </div>

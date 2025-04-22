@@ -8,20 +8,22 @@ import {
   InputGroup,
   Form,
   Spinner,
-  Alert
+  Alert,
+  Button,
 } from 'react-bootstrap';
 import { 
   FaSearch, 
-  FaCalendarAlt, 
   FaUtensils,
   FaSun,
   FaMoon,
   FaCloudSun,
-  FaInfoCircle
+  FaInfoCircle,
+  FaArrowLeft,
 } from 'react-icons/fa';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 const MenuMakan = () => {
   const [menuList, setMenuList] = useState([]);
@@ -34,6 +36,7 @@ const MenuMakan = () => {
     hari: '',
     waktu: ''
   });
+  const navigate = useNavigate();
 
   // Initialize AOS
   useEffect(() => {
@@ -112,6 +115,14 @@ const MenuMakan = () => {
 
   return (
     <Container className="py-4">
+      <Button 
+      variant="outline-secondary" 
+      onClick={() => navigate(-1)}
+      className="mb-4 d-flex align-items-center bg-primary text-white border-0 shadow-sm"
+      >
+      <FaArrowLeft className="me-2" />
+      Kembali
+      </Button>
       <h1 className="text-center mb-4" data-aos="fade-down">
         <FaUtensils className="text-primary me-3" />
         Menu Makanan

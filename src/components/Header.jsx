@@ -1,10 +1,33 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.css";
-import { FaHome, FaBook, FaUsers, FaInfoCircle, FaSignInAlt, FaSitemap } from 'react-icons/fa';
+import { FaHome, FaBook, FaUsers, FaInfoCircle, FaSignInAlt, FaSitemap, FaSignOutAlt } from 'react-icons/fa';
 
 const Header = () => {
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+    // Cek status login saat komponen dimount
+    React.useEffect(() => {
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLogout = () => {
+        // Hapus semua data autentikasi
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('role');
+        
+        // Update state
+        setIsLoggedIn(false);
+        
+        // Redirect ke halaman login dengan replace (tidak bisa kembali)
+        navigate('/login', { replace: true });
+    };
+
     return (
         <header className="bg-gradient-primary text-white sticky-top shadow-lg">
             <div className="container">
@@ -60,13 +83,13 @@ const Header = () => {
                                 
                                 <li className="nav-item mx-3">
                                     <NavLink 
-                                        to="/laporandevisi" 
+                                        to="/event" 
                                         className={({ isActive }) => 
                                             `nav-link d-flex align-items-center ${isActive ? "active-link" : ""}`
                                         }
                                     >
                                         <FaBook className="me-2" />
-                                        Laporan Divisi
+                                        Event
                                     </NavLink>
                                 </li>
                                 
@@ -96,13 +119,23 @@ const Header = () => {
                             </ul>
 
                             <div className="d-flex align-items-center auth-buttons">
-                                <NavLink 
-                                    to="/login" 
-                                    className="btn btn-outline-light rounded-pill px-3 py-2 d-flex align-items-center"
-                                >
-                                    <FaSignInAlt className="me-2" />
-                                    Login
-                                </NavLink>
+                                {isLoggedIn ? (
+                                    <button 
+                                        onClick={handleLogout}
+                                        className="btn btn-outline-light rounded-pill px-3 py-2 d-flex align-items-center"
+                                    >
+                                        <FaSignOutAlt className="me-2" />
+                                        Keluar
+                                    </button>
+                                ) : (
+                                    <NavLink 
+                                        to="/login" 
+                                        className="btn btn-outline-light rounded-pill px-3 py-2 d-flex align-items-center"
+                                    >
+                                        <FaSignInAlt className="me-2" />
+                                        Login
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
                     </div>

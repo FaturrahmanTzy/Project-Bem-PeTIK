@@ -9,24 +9,30 @@ import {
   Form,
   Spinner,
   Alert,
-  ListGroup
+  ListGroup,
+  Button,
 } from 'react-bootstrap';
 import { 
   FaSearch, 
   FaCalendarAlt, 
   FaUsers,
   FaUserFriends,
-  FaChevronRight
+  FaChevronRight,
+  FaArrowLeft,
 } from 'react-icons/fa';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Piket_Dapur = () => {
   const [piketList, setPiketList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   // Initialize AOS animations
   useEffect(() => {
@@ -67,6 +73,14 @@ const Piket_Dapur = () => {
 
   return (
     <Container className="py-4">
+        <Button 
+        variant="outline-secondary" 
+        onClick={() => navigate(-1)}
+        className="mb-4 d-flex align-items-center bg-primary text-white border-0 shadow-sm"
+        >
+        <FaArrowLeft className="me-2" />
+        Kembali
+        </Button>
       <h1 className="text-center mb-4" data-aos="fade-down">
         <FaCalendarAlt className="text-primary me-3" />
         Jadwal Piket Dapur
