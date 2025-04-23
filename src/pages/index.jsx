@@ -128,12 +128,12 @@ const events = [
     category: "Teknologi"
   },
   {
-    title: "PeTIK Charity Festival",
-    date: "20 Januari 2024",
-    description: "Acara amal tahunan dengan berbagai pertunjukan dan bazaar untuk mendukung pendidikan anak kurang mampu",
+    title: "Pekan Tahfiz PeTIK",
+    date: "15 Februari 2024",
+    description: "menghafal Al-Quran untuk santri dengan hafalan minimal 2 Juz dan juga mengasah kemampuan membaca Al-Quran",
     image: Event3,
-    category: "Sosial"
-  }
+    category: "Keagamaan"
+  },
 ];
 
 

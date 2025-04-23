@@ -43,8 +43,8 @@ const Divisi = () => {
   const divisiData = [
     {
       id: 'kesehatan`',
-      title: "Divisi Kesehatan & Olahraga",
-      description: "Bertanggung jawab atas kesehatan mahasantri dan kegiatan olahraga",
+      title: "Divisi Kesehatan",
+      description: "Bertanggung jawab atas kesehatan mahasantri",
       image: kesehatanImg,
       icon: <FaClinicMedical size={40} className="text-primary" />,
       color: "primary"

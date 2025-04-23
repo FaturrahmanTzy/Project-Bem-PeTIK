@@ -135,13 +135,13 @@ const PengurusBEM = () => {
             <section className="kepengurusan-hero bg-gradient-primary text-white py-5" data-aos="fade">
                 <Container>
                     <div className="text-center py-5">
-                        <h1 className="display-4 fw-bold mb-3">Kepengurusan BEM PeTIK</h1>
-                        <p className="lead mb-4">Tim profesional yang berdedikasi untuk kemajuan kampus dan mahasiswa</p>
+                        <h1 className="display-4 fw-bold mb-3" data-aos="fade-down">Kepengurusan BEM PeTIK</h1>
+                        <p className="lead mb-4" data-aos="fade-down" data-aos-delay="50">Tim profesional yang berdedikasi untuk kemajuan kampus dan mahasiswa</p>
                         <div className="d-flex justify-content-center gap-3">
-                            <Button variant="warning" size="lg" className="rounded-pill px-4 fw-bold">
+                            <Button variant="warning" size="lg" className="rounded-pill px-4 fw-bold" data-aos="fade-down">
                                 Periode 2024/2025
                             </Button>
-                            <Button variant="outline-light" size="lg" className="rounded-pill px-4 fw-bold">
+                            <Button variant="outline-light" size="lg" className="rounded-pill px-4 fw-bold" data-aos="fade-down">
                                 Struktur Organisasi
                             </Button>
                         </div>

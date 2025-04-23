@@ -123,16 +123,16 @@ const Event = () => {
       
       <main className="event-container">
         {/* Hero Section */}
-        <section className="hero-section bg-gradient-primary text-white py-5" data-aos="fade-down">
+        <section className="hero-section bg-gradient-primary text-white py-5">
           <div className="container py-5">
             <div className="text-center">
-              <h1 className="display-4 fw-bold mb-3">Kegiatan BEM PeTIK</h1>
-              <p className="lead mb-4">Berbagai acara dan kegiatan yang diselenggarakan oleh BEM PeTIK</p>
+              <h1 className="display-4 fw-bold mb-3" data-aos="fade-down">Kegiatan BEM PeTIK</h1>
+              <p className="lead mb-4" data-aos="fade-down" data-aos-delay="50">Berbagai acara dan kegiatan yang diselenggarakan oleh BEM PeTIK</p>
               <div className="d-flex justify-content-center gap-3">
-                <button className="btn btn-warning rounded-pill px-4 fw-bold">
+                <button className="btn btn-warning rounded-pill px-4 fw-bold" data-aos="fade-down">
                   Periode 2024/2025
                 </button>
-                <button className="btn btn-outline-light rounded-pill px-4 fw-bold">
+                <button className="btn btn-outline-light rounded-pill px-4 fw-bold" data-aos="fade-down">
                   Semua Kategori
                 </button>
               </div>

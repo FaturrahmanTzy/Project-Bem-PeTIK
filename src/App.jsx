@@ -24,7 +24,7 @@ import Piket from './pages/divisi/kebersihan/Piket';
 import ProtectedRoute from './ProtectedRoute';
 import Keuangan from './pages/divisi/keuangan/bendahara';
 import Sekretaris from './pages/divisi/sekretaris/Sekretaris';
-
+import Kesehatan from './pages/divisi/kesehatan/Kesehatan';
 
 const App = () => {
     return (
@@ -54,7 +54,7 @@ const App = () => {
           <Route path = "/divisi/kebersihan/Piket`" element = {<Piket />}/>
           <Route path = "/divisi/keuangan`" element = {<Keuangan />}/>
           <Route path = "/divisi/sekretaris`" element = {<Sekretaris />}/>
-
+          <Route path = "/divisi/kesehatan`" element = {<Kesehatan />}/>
 
           <Route path = "/login" element = { <Login/> }/>
           <Route path = "*" element = { <ErrorPage/>} />
