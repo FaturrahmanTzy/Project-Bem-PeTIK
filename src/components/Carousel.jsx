@@ -51,11 +51,11 @@ const Carousel = () => {
                             <div className="carousel-caption d-flex flex-column justify-content-center h-100">
                                 <div className="caption-content p-4 p-lg-5">
                                     <span className="badge bg-warning text-dark mb-3 px-3 py-2 fw-normal">BEM PeTIK 2024/2025</span>
-                                    <h2 className="display-4 fw-bold mb-4">Penggerak Perubahan <br/>di Lingkungan Kampus</h2>
-                                    <p className="lead mb-4">Mewujudkan kampus yang dinamis melalui program kerja inovatif dan kolaboratif</p>
+                                    <h2 className="display-4 fw-bold mb-4">Penggerak Perubahan <br/>di Lingkungan BEM PeTIK</h2>
+                                    <p className="lead mb-4">Mewujudkan pesantren PeTIK yang dinamis melalui program kerja inovatif dan kolaboratif</p>
                                     <div className="d-flex gap-3">
                                         <button className="btn btn-warning btn-lg px-4 rounded-pill fw-bold d-flex align-items-center">
-                                            <Link to="/divisi" className="text-white text-decoration-none">Jelajahi Kegiatan <FaArrowRight className="ms-2" /></Link>
+                                            <Link to="/divisi" className="text-dark text-decoration-none">Jelajahi Kegiatan <FaArrowRight className="ms-2" /></Link>
                                         </button>
                                         <button className="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">
                                             <Link to="/about" className="text-white text-decoration-none">Tentang Kami</Link>

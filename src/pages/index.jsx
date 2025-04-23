@@ -27,17 +27,19 @@ import Event3 from "../assets/event3.png";
 
 
 // Import foto anggota
-import anggota1 from "../assets/anggota1.jpeg";
-import anggota2 from "../assets/anggota2.jpg";
-import anggota3 from "../assets/anggota3.jpg";
-import anggota4 from "../assets/anggota4.jpg";
-import anggota5 from "../assets/anggota5.jpg";
-import anggota6 from "../assets/anggota6.jpg";
-import anggota7 from "../assets/anggota7.jpg";
-import fatur from "../assets/fa.jpeg";
+import ketua from "../assets/anggota1.jpeg";
+import anggota1 from "../assets/ketua.jpg";
+import anggota2 from "../assets/sekretaris1.jpg";
+import anggota3 from "../assets/dapur1.jpg";
+import anggota4 from "../assets/bendahara1.jpg";
+import anggota5 from "../assets/kesehatan1.jpg";
+import anggota6 from "../assets/pendidikan1.jpg";
+import anggota7 from "../assets/kebersihan1.jpg";
+import dosen from "../assets/dosen.png";
+import wakil from "../assets/wakil.jpg";
 
 
-import alumni1 from "../assets/alumni1.png"; // Add these images to your assets
+import alumni1 from "../assets/alumni1.png"; 
 import alumni2 from "../assets/alumni2.png";
 import alumni3 from "../assets/alumni3.png";
 import alumni4 from "../assets/alumni4.png";
@@ -625,7 +627,7 @@ const Home = () => {
                                 <div className="card-body p-4">
                                     <div className="d-flex align-items-center mb-3">
                                         <img 
-                                            src={anggota1}
+                                            src={dosen}
                                             alt="Testimoni" 
                                             className="rounded-circle me-3" 
                                             width="50"
@@ -647,14 +649,14 @@ const Home = () => {
                                 <div className="card-body p-4">
                                     <div className="d-flex align-items-center mb-3">
                                         <img 
-                                            src={fatur} 
+                                            src={ketua} 
                                             alt="Testimoni" 
                                             className="rounded-circle me-3" 
                                             width="50"
                                         />
                                         <div>
                                             <h6 className="fw-bold mb-0">Muhammad Faturrahman</h6>
-                                            <small className="text-muted">Mahasiswa 2024</small>
+                                            <small className="text-muted">Ketua BEM PeTIK 2024</small>
                                         </div>
                                     </div>
                                     <p className="card-text">
@@ -669,14 +671,14 @@ const Home = () => {
                                 <div className="card-body p-4">
                                     <div className="d-flex align-items-center mb-3">
                                         <img 
-                                            src={anggota2}
+                                            src={wakil}
                                             alt="Testimoni" 
                                             className="rounded-circle me-3" 
                                             width="50"
                                         />
                                         <div>
-                                            <h6 className="fw-bold mb-0">Izan Mar'i</h6>
-                                            <small className="text-muted">Mahasiswa 2025</small>
+                                            <h6 className="fw-bold mb-0">Muhammad Riza Al-Fahri</h6>
+                                            <small className="text-muted">Sekretaris BEM PeTIK 2024</small>
                                         </div>
                                     </div>
                                     <p className="card-text">

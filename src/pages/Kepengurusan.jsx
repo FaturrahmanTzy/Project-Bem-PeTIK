@@ -6,13 +6,13 @@ import Footer from '../components/Footer';
 import "./kepengurusan.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import anggota1 from "../assets/anggota1.jpeg";
-import anggota2 from "../assets/anggota2.jpg";
-import anggota3 from "../assets/anggota3.jpg";
-import anggota4 from "../assets/anggota4.jpg";
-import anggota5 from "../assets/anggota5.jpg";
-import anggota6 from "../assets/anggota6.jpg";
-import anggota7 from "../assets/anggota7.jpg";
+import anggota1 from "../assets/ketua.jpg";
+import anggota2 from "../assets/sekretaris1.jpg";
+import anggota3 from "../assets/dapur1.jpg";
+import anggota4 from "../assets/bendahara1.jpg";
+import anggota5 from "../assets/kesehatan1.jpg";
+import anggota6 from "../assets/pendidikan1.jpg";
+import anggota7 from "../assets/kebersihan1.jpg";
 
 const PengurusBEM = () => {
     // Data pengurus BEM PeTIK dengan gambar lokal
