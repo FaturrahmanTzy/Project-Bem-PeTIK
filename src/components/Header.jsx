@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.css";
-import { FaHome, FaBook, FaUsers, FaInfoCircle, FaSignInAlt, FaSitemap, FaSignOutAlt } from 'react-icons/fa';
+import { FaHome, FaBook, FaUsers, FaInfoCircle, FaSignInAlt, FaSitemap, FaSignOutAlt, FaCalendarAlt } from 'react-icons/fa';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -88,7 +88,7 @@ const Header = () => {
                                             `nav-link d-flex align-items-center ${isActive ? "active-link" : ""}`
                                         }
                                     >
-                                        <FaBook className="me-2" />
+                                        <FaCalendarAlt className="me-2" />
                                         Event
                                     </NavLink>
                                 </li>

@@ -6,11 +6,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { 
   FaUserTie, FaUserFriends, FaFileAlt, FaMoneyBillWave, 
-  FaBullhorn, FaCalendarAlt, FaCameraRetro, FaArrowRight,
+  FaBullhorn, FaCalendarAlt,FaArrowRight,
   FaHeartbeat, FaBroom, FaUtensils, FaGraduationCap, 
   FaMoneyBillAlt, FaPenAlt, FaLaptopCode, FaMicrophone, FaChalkboardTeacher, 
   FaPaintBrush,
 } from "react-icons/fa";
+
 import { FaBriefcase, FaQuoteLeft,FaTwitter, FaInstagram, FaLinkedin} from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Slider from "react-slick";
@@ -104,11 +105,11 @@ const alumniData = [
 const anggota = [
     { nama: "Sudarman", jabatan: "Ketua BEM", foto: anggota1, icon: <FaUserTie size={24} className="mb-2" /> },
     { nama: "Muhammad Riza Al-Fahri", jabatan: "Wakil Ketua", foto: anggota2, icon: <FaUserFriends size={24} className="mb-2" /> },
-    { nama: "Risky Agustian", jabatan: "Koordinator Dapur", foto: anggota3, icon: <FaFileAlt size={24} className="mb-2" /> },
+    { nama: "Risky Agustian", jabatan: "Koordinator Dapur", foto: anggota3, icon: <FaUtensils size={24} className="mb-2" /> },
     { nama: "Firdaus Al-Ayubi", jabatan: "Bendahara", foto: anggota4, icon: <FaMoneyBillWave size={24} className="mb-2" /> },
     { nama: "Muhammad Ilmiannur", jabatan: "Kesehatan/olahraga", foto: anggota5, icon: <FaHeartbeat size={24} className="mb-2" /> },
     { nama: "Kholis Ibrohim", jabatan: "Koordinator Pendidikan", foto: anggota6, icon: <FaChalkboardTeacher size={24} className="mb-2" /> },
-    { nama: "Ikhsan Prasetyo", jabatan: "Koordinator Kebersihan", foto: anggota7, icon: <FaCameraRetro size={24} className="mb-2" /> },
+    { nama: "Ikhsan Prasetyo", jabatan: "Koordinator Kebersihan", foto: anggota7, icon: <FaBroom size={24} className="mb-2" /> },
 ];
 
 const events = [
@@ -655,7 +656,7 @@ const Home = () => {
                                             width="50"
                                         />
                                         <div>
-                                            <h6 className="fw-bold mb-0">Muhammad Faturrahman</h6>
+                                            <h6 className="fw-bold mb-0">Sudarman</h6>
                                             <small className="text-muted">Ketua BEM PeTIK 2024</small>
                                         </div>
                                     </div>

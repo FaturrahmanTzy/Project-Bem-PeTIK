@@ -82,7 +82,7 @@ const PengurusBEM = () => {
             name: "Ikhsan Prasetyo",
             position: "Koordinator Kebersihan",
             division: "Kebersihan",
-            bio: "Mengawasi kebersihan lingkungan kampus dan mengorganisir kegiatan bersih-bersih",
+            bio: "Mengawasi kebersihan lingkungan pesantren PeTIK dan mengorganisir kegiatan bersih-bersih",
             photo: anggota7,
             social: { email: "ikhsan@petik.ac.id", instagram: "@ikhsan_clean" },
             achievements: ["Green Campus Award 2023", "Eco Warrior 2022"]
