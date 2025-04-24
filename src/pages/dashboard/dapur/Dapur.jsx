@@ -49,15 +49,16 @@ const Dapur = () => {
       console.log('Response dari API:', response.data); // Untuk debugging
       
       // Perbaikan utama di sini - sesuaikan dengan struktur response API
-      const data = Array.isArray(response.data) 
-        ? response.data.map(item => ({
-            ...item,
-            imageUrl: item.image ? `${baseImageUrl}${item.image}` : null
-          })) 
-        : response.data?.data?.map(item => ({
-            ...item,
-            imageUrl: item.image ? `${baseImageUrl}${item.image}` : null
-          })) || [];
+// Ganti bagian ini di fetchData
+        const data = Array.isArray(response.data) 
+          ? response.data.map(item => ({
+              ...item,
+              imageUrl: item.image ? (item.image.startsWith('http') ? item.image : `${baseImageUrl}${item.image}`) : null
+            })) 
+          : response.data?.data?.map(item => ({
+              ...item,
+              imageUrl: item.image ? (item.image.startsWith('http') ? item.image : `${baseImageUrl}${item.image}`) : null
+            })) || [];
       
       setMakanan(data);
     } catch (err) {
@@ -350,16 +351,15 @@ const Dapur = () => {
                 <Card className="h-100 shadow-sm food-card border-0">
                   <div className="food-image-container position-relative">
                   <Image
-                        src={item.imageUrl || '/img/food-placeholder.jpg'}
-                        alt={item.nama_makanan}
-                        fluid
-                        className="food-image"
-                        onError={(e) => {
-                          console.error('Gagal memuat gambar:', item.nama_makanan, item.imageUrl);
-                          e.target.src = '/img/food-placeholder.jpg'; // Gambar placeholder
-                          e.target.onerror = null; // Mencegah infinite loop
-                        }}
-                      />
+                      src={item.imageUrl}
+                      alt={item.nama_makanan}
+                      fluid
+                      className="food-image"
+                      onError={(e) => {
+                        e.target.onerror = null; // Mencegah infinite loop
+                        e.target.src = '/img/food-placeholder.jpg'; // Fallback image
+                      }}
+                    />
                     <div className="food-actions position-absolute top-0 end-0 p-2">
                       <Button
                         variant="outline-light"

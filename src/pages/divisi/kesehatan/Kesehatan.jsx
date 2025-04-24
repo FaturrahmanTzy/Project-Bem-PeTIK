@@ -243,6 +243,7 @@ useEffect(() => {
                     .sort((a, b) => new Date(a.tgl_kadaluarsa) - new Date(b.tgl_kadaluarsa))
                     .slice(0, 5) // Show only top 5
                     .map(obat => (
+
                       <tr key={obat.id}>
                         <td>{obat.nama_obat}</td>
                         <td>{obat.stok}</td>
@@ -296,12 +297,9 @@ useEffect(() => {
                   <Card className="h-100 shadow-sm border-0">
                     <div className="ratio ratio-16x9">
                       <Image
-                        src={obat.imageUrl || 'https://via.placeholder.com/300x200?text=Gambar+Obat'}
+                        src={obat.image}
                         alt={obat.nama_obat}
                         className="card-img-top object-fit-cover"
-                        onError={(e) => {
-                          e.target.src = 'https://via.placeholder.com/300x200?text=Gambar+Tidak+Tersedia';
-                        }}
                       />
                     </div>
                     <Card.Body>
