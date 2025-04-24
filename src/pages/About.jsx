@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { FaUsers, FaLightbulb, FaHandshake, FaChartLine, FaBookOpen, FaUserTie, FaUserFriends, FaFileAlt, FaMoneyBillWave } from 'react-icons/fa';
+import { FaUsers, FaLightbulb, FaHandshake, FaChartLine, FaBookOpen, FaUserTie, FaUserFriends, FaBroom, FaMoneyBillWave } from 'react-icons/fa';
 import aboutImage from "../assets/about.jpg";
 import "./about.css";
 import AOS from 'aos';
@@ -128,25 +128,25 @@ const About = () => {
                                             <div className="col-12 mb-3">
                                                 <div className="d-flex align-items-center">
                                                     <FaUserTie className="me-2 text-primary" />
-                                                    <span>Ketua BEM: IchWan Nurfitrah</span>
+                                                    <span>Ketua BEM: Sudarman</span>
                                                 </div>
                                             </div>
                                             <div className="col-12 mb-3">
                                                 <div className="d-flex align-items-center">
                                                     <FaUserFriends className="me-2 text-primary" />
-                                                    <span>Wakil Ketua: Izan Mar'i</span>
+                                                    <span>Wakil Ketua: Muhammad Riza Al-Fahri</span>
                                                 </div>
                                             </div>
                                             <div className="col-12 mb-3">
                                                 <div className="d-flex align-items-center">
-                                                    <FaFileAlt className="me-2 text-primary" />
-                                                    <span>Sekretaris: Risky Agustian</span>
+                                                    <FaMoneyBillWave className="me-2 text-primary" />
+                                                    <span>Bendahara: Firdaus Al-Ayubi</span>
                                                 </div>
                                             </div>
                                             <div className="col-12">
                                                 <div className="d-flex align-items-center">
-                                                    <FaMoneyBillWave className="me-2 text-primary" />
-                                                    <span>Bendahara: Sudarman</span>
+                                                    <FaBroom className="me-2 text-primary" />
+                                                    <span>Kebersihan : Ikhsan Prasetyo</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,8 +162,8 @@ const About = () => {
                                             <div className="col-md-6">
                                                 <ul className="text-muted">
                                                     <li>Divisi Pendidikan</li>
-                                                    <li>Divisi Kewirausahaan</li>
-                                                    <li>Divisi Media</li>
+                                                    <li>Divisi Dapur</li>
+                                                    <li>Divisi Sekretaris</li>
                                                 </ul>
                                             </div>
                                             <div className="col-md-6">
@@ -243,7 +243,7 @@ const About = () => {
                             <a href="https://pmbt.petik.or.id/" target="_blank" className="text-decoration-none text-white">Daftar Sekarang</a>
                         </button>
                         <button className="btn btn-outline-primary btn-lg px-4 rounded-pill fw-bold">
-                            <Link to="/divisi" className="text-decoration-none text-primary"> Lihat Kegiatan </Link>
+                            <Link to="/event" className="text-decoration-none text-primary"> Lihat Kegiatan </Link>
                         </button>
                     </div>
                 </div>

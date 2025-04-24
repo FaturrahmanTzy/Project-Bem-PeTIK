@@ -10,7 +10,6 @@ import Event from './pages/portal/Event';
 import Login from './pages/auth/Login';
 import Divisi from './pages/divisi/Divisi';
 import Dashboard from './pages/dashboard/Dashboard';
-import Pendaftran from './pages/dashboard/Pendaftran';
 import Dapur from './pages/dashboard/dapur/Dapur';
 import PiketDapur from './pages/dashboard/dapur/PiketDapur';
 import AddPiketDapur from './pages/dashboard/dapur/AddPiketDapur';
@@ -41,7 +40,6 @@ const App = () => {
             <Dashboard />
             </ProtectedRoute>
           } />
-          <Route path="/pendaftaran" element={<Pendaftran />} />
           <Route path = "/divisi/dapur" element = {<Dapur />}/>
           <Route path = "/dapur/piketdapur" element = {<PiketDapur />}/>
           <Route path = "/dapur/piketdapur/add" element = {<AddPiketDapur />}/>

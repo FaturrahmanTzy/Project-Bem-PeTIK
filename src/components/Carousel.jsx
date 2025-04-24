@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import foto1 from "../assets/1.jpg";
 import foto2 from "../assets/2.jpg";
 import foto3 from "../assets/3.jpg";
+import Petik from "../assets/PeTIK.png";
 import "./carousel.css";
 import { FaChevronLeft, FaChevronRight, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -66,7 +67,7 @@ const Carousel = () => {
                         </div>
                         
                         <div className="carousel-item">
-                            <img src={foto2} className="d-block w-100 carousel-img" alt="BEM PeTIK Team" />
+                            <img src={Petik} className="d-block w-100 carousel-img" alt="BEM PeTIK Team" />
                             <div className="carousel-overlay"></div>
                             <div className="carousel-caption d-flex flex-column justify-content-center h-100">
                                 <div className="caption-content p-4 p-lg-5">
